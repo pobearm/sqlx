@@ -456,3 +456,12 @@ func NamedExec(e Ext, query string, arg interface{}) (sql.Result, error) {
 	}
 	return e.Exec(q, args...)
 }
+
+func NamedSelect(e Ext, dest any, query string, arg interface{}) error {
+	var rows, err = NamedQuery(e, query, arg)
+	if err != nil {
+		return err
+	}
+	defer rows.Close()
+	return scanAll(rows, dest, false)
+}

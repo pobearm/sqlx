@@ -327,6 +327,10 @@ func (db *DB) Get(dest interface{}, query string, args ...interface{}) error {
 	return Get(db, dest, query, args...)
 }
 
+func (db *DB) NamedSelect(dest any, query string, arg interface{}) error {
+	return NamedSelect(db, dest, query, arg)
+}
+
 // MustBegin starts a transaction, and panics on error.  Returns an *sqlx.Tx instead
 // of an *sql.Tx.
 func (db *DB) MustBegin() *Tx {
@@ -432,6 +436,10 @@ func (tx *Tx) NamedExec(query string, arg interface{}) (sql.Result, error) {
 // Any placeholder parameters are replaced with supplied args.
 func (tx *Tx) Select(dest interface{}, query string, args ...interface{}) error {
 	return Select(tx, dest, query, args...)
+}
+
+func (tx *Tx) NamedSelect(dest any, query string, arg interface{}) error {
+	return NamedSelect(tx, dest, query, arg)
 }
 
 // Queryx within a transaction.

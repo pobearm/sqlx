@@ -131,3 +131,12 @@ func NamedExecContext(ctx context.Context, e ExtContext, query string, arg inter
 	}
 	return e.ExecContext(ctx, q, args...)
 }
+
+func NamedSelectContext(ctx context.Context, e ExtContext, dest any, query string, arg interface{}) error {
+	var rows, err = NamedQueryContext(ctx, e, query, arg)
+	if err != nil {
+		return err
+	}
+	defer rows.Close()
+	return scanAll(rows, dest, false)
+}

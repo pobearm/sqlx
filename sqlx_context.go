@@ -135,6 +135,10 @@ func (db *DB) NamedExecContext(ctx context.Context, query string, arg interface{
 	return NamedExecContext(ctx, db, query, arg)
 }
 
+func (db *DB) NamedSelectContext(ctx context.Context, dest any, query string, arg interface{}) error {
+	return NamedSelectContext(ctx, db, dest, query, arg)
+}
+
 // SelectContext using this DB.
 // Any placeholder parameters are replaced with supplied args.
 func (db *DB) SelectContext(ctx context.Context, dest interface{}, query string, args ...interface{}) error {
@@ -357,6 +361,10 @@ func (tx *Tx) QueryRowxContext(ctx context.Context, query string, args ...interf
 // Any named placeholder parameters are replaced with fields from arg.
 func (tx *Tx) NamedExecContext(ctx context.Context, query string, arg interface{}) (sql.Result, error) {
 	return NamedExecContext(ctx, tx, query, arg)
+}
+
+func (tx *Tx) NamedSelectContext(ctx context.Context, dest any, query string, arg interface{}) error {
+	return NamedSelectContext(ctx, tx, dest, query, arg)
 }
 
 // SelectContext using the prepared statement.
