@@ -133,10 +133,22 @@ func NamedExecContext(ctx context.Context, e ExtContext, query string, arg inter
 }
 
 func NamedSelectContext(ctx context.Context, e ExtContext, dest any, query string, arg interface{}) error {
-	var rows, err = NamedQueryContext(ctx, e, query, arg)
+	q, args, err := bindNamedMapper(BindType(e.DriverName()), query, arg, mapperFor(e))
+	if err != nil {
+		return err
+	}
+	rows, err := e.QueryxContext(ctx, q, args...)
 	if err != nil {
 		return err
 	}
 	defer rows.Close()
 	return scanAll(rows, dest, false)
+}
+
+func NamedGetContext(ctx context.Context, e ExtContext, dest any, query string, arg interface{}) error {
+	q, args, err := bindNamedMapper(BindType(e.DriverName()), query, arg, mapperFor(e))
+	if err != nil {
+		return err
+	}
+	return e.QueryRowxContext(ctx, q, args...).scanAny(dest, false)
 }

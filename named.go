@@ -465,3 +465,11 @@ func NamedSelect(e Ext, dest any, query string, arg interface{}) error {
 	defer rows.Close()
 	return scanAll(rows, dest, false)
 }
+
+func NamedGet(e Ext, dest any, query string, arg interface{}) error {
+	q, args, err := bindNamedMapper(BindType(e.DriverName()), query, arg, mapperFor(e))
+	if err != nil {
+		return err
+	}
+	return e.QueryRowx(q, args...).scanAny(dest, false)
+}
