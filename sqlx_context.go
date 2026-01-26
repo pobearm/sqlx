@@ -375,6 +375,10 @@ func (tx *Tx) NamedGetContext(ctx context.Context, dest any, query string, arg i
 	return NamedGetContext(ctx, tx, dest, query, arg)
 }
 
+func (tx *Tx) NamedQueryContext(ctx context.Context, query string, arg interface{}) (*Rows, error) {
+	return NamedQueryContext(ctx, tx, query, arg)
+}
+
 // SelectContext using the prepared statement.
 // Any placeholder parameters are replaced with supplied args.
 func (s *Stmt) SelectContext(ctx context.Context, dest interface{}, args ...interface{}) error {
