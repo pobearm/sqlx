@@ -25,7 +25,7 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
 
-	"github.com/intdol/sqlx/reflectx"
+	"github.com/pobearm/sqlx/reflectx"
 )
 
 /* compile time checks that Db, Tx, Stmt (qStmt) implement expected interfaces */

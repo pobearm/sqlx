@@ -11,7 +11,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/intdol/sqlx/reflectx"
+	"github.com/pobearm/sqlx/reflectx"
 )
 
 // Although the NameMapper is convenient, in practice it should not

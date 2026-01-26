@@ -1,4 +1,4 @@
-module github.com/intdol/sqlx
+module github.com/pobearm/sqlx
 
 go 1.25.5
 

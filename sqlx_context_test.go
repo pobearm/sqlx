@@ -26,7 +26,7 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
 
-	"github.com/intdol/sqlx/reflectx"
+	"github.com/pobearm/sqlx/reflectx"
 )
 
 func MultiExecContext(ctx context.Context, e ExecerContext, query string) {
