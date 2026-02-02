@@ -130,7 +130,7 @@ func (db *DB) NamedQueryContext(ctx context.Context, query string, arg interface
 }
 
 // NamedQueryRowxContext using this DB.
-func (db *DB) NamedQueryRowxContext(ctx context.Context, e ExtContext, query string, arg interface{}) *Row {
+func (db *DB) NamedQueryRowxContext(ctx context.Context, query string, arg interface{}) *Row {
 	return NamedQueryRowxContext(ctx, db, query, arg)
 }
 
@@ -385,7 +385,7 @@ func (tx *Tx) NamedQueryContext(ctx context.Context, query string, arg interface
 }
 
 // NamedQueryRowxContext using this DB.
-func (tx *Tx) NamedQueryRowxContext(ctx context.Context, e ExtContext, query string, arg interface{}) *Row {
+func (tx *Tx) NamedQueryRowxContext(ctx context.Context, query string, arg interface{}) *Row {
 	return NamedQueryRowxContext(ctx, tx, query, arg)
 }
 
